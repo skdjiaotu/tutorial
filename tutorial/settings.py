@@ -60,7 +60,7 @@ ROBOTSTXT_OBEY = False
 #    "scrapy.extensions.telnet.TelnetConsole": None,
 #}
 DOWNLOADER_MIDDLEWARES = {
-    "tutorial.middlewares.SeleniumMiddleware": 2,
+    "tutorial.middlewares.SeleniumMiddleware": 300,
     # "tutorial.middlewares.UserAgentMiddleware": 4,
     # "tutorial.middlewares.ProxyMiddleware": 3,
 }
@@ -83,9 +83,9 @@ PROXY_LIST = [
 ]
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    "tutorial.pipelines.TutorialPipeline": 300,
-# }
+ITEM_PIPELINES = {
+   "tutorial.pipelines.TutorialPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

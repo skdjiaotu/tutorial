@@ -6,6 +6,7 @@ import random
 import time
 
 from scrapy import signals
+from scrapy.http import HtmlResponse
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -127,7 +128,7 @@ class SeleniumMiddleware(object):
         self.wait = WebDriverWait(self.browser, self.timeout)
 
     def __del__(self):
-        self.browser.quit()
+        self.browser.close()
 
     def process_request(self, request, spider):
         # 不需要渲染的可以不经过 self.browser 请求就行
@@ -137,7 +138,7 @@ class SeleniumMiddleware(object):
         time.sleep(3)
         body = self.browser.page_source
         # 返回响应的html页面  不经过下载器
-        return scrapy.http.HtmlResponse(url=request.url, body=body, request=request, encoding='utf-8')
+        return HtmlResponse(url=request.url, body=body, request=request, encoding='utf-8')
 
 
 class UserAgentMiddleware(object):
